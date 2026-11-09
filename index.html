@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blank 7x7 2048 Board</title>
+    <title>7x7 2048 Board with Tile Colors</title>
     <style>
         body {
             background-color: #faf8ef;
@@ -69,12 +69,59 @@
             grid-template-columns: repeat(7, 1fr);
             grid-template-rows: repeat(7, 1fr);
             gap: 10px;
+            position: relative;
         }
 
         .grid-cell {
             background-color: rgba(238, 228, 218, 0.35);
             border-radius: 3px;
         }
+
+        /* --- Tile Styles --- */
+        .tile {
+            width: 100%;
+            height: 100%;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 24px; /* Scaled down slightly for larger numbers */
+            transition: transform 100ms ease-in-out;
+        }
+
+        /* Adjust font size for huge numbers so they fit the cell */
+        .tile-1024, .tile-2048, .tile-4096, .tile-8192 { font-size: 20px; }
+        .tile-16384, .tile-32768, .tile-65536 { font-size: 16px; }
+        .tile-131072, .tile-262144, .tile-524288 { font-size: 13px; }
+        .tile-1048576, .tile-2097152, .tile-4194304 { font-size: 11px; }
+        .tile-8388608, .tile-16777216 { font-size: 9px; }
+
+        /* Color definitions from the image */
+        .tile-2        { background: #eee4da; color: #776e65; }
+        .tile-4        { background: #ede0c8; color: #776e65; }
+        .tile-8        { background: #f2b179; color: #f9f6f2; }
+        .tile-16       { background: #f59563; color: #f9f6f2; }
+        .tile-32       { background: #f67c5f; color: #f9f6f2; }
+        .tile-64       { background: #f65e3b; color: #f9f6f2; }
+        .tile-128      { background: #edcf72; color: #f9f6f2; }
+        .tile-256      { background: #edcc61; color: #f9f6f2; }
+        .tile-512      { background: #edc850; color: #f9f6f2; }
+        .tile-1024     { background: #edc53f; color: #f9f6f2; }
+        .tile-2048     { background: #edc22e; color: #f9f6f2; }
+        .tile-4096     { background: #b586b4; color: #f9f6f2; }
+        .tile-8192     { background: #a861ab; color: #f9f6f2; }
+        .tile-16384    { background: #a048a3; color: #f9f6f2; }
+        .tile-32768    { background: #800080; color: #f9f6f2; }
+        .tile-65536    { background: #600046; color: #f9f6f2; }
+        .tile-131072   { background: #8b86e3; color: #f9f6f2; }
+        .tile-262144   { background: #7766e9; color: #f9f6f2; }
+        .tile-524288   { background: #6751ec; color: #f9f6f2; }
+        .tile-1048576  { background: #4f3df1; color: #f9f6f2; }
+        .tile-2097152  { background: #261df9; color: #f9f6f2; }
+        .tile-4194304  { background: #929292; color: #f9f6f2; }
+        .tile-8388608  { background: #676767; color: #f9f6f2; }
+        .tile-16777216 { background: #484848; color: #f9f6f2; }
     </style>
 </head>
 <body>
@@ -95,64 +142,50 @@
         </div>
 
         <div class="grid-container">
-            <!-- Row 1 -->
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
+            <!-- Row 1 (Demonstrating a few colored tiles dropped directly inside cells) -->
+            <div class="grid-cell"><div class="tile tile-2">2</div></div>
+            <div class="grid-cell"><div class="tile tile-4">4</div></div>
+            <div class="grid-cell"><div class="tile tile-8">8</div></div>
+            <div class="grid-cell"><div class="tile tile-16">16</div></div>
+            <div class="grid-cell"><div class="tile tile-32">32</div></div>
+            <div class="grid-cell"><div class="tile tile-64">64</div></div>
+            <div class="grid-cell"><div class="tile tile-128">128</div></div>
+            
             <!-- Row 2 -->
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
+            <div class="grid-cell"><div class="tile tile-256">256</div></div>
+            <div class="grid-cell"><div class="tile tile-512">512</div></div>
+            <div class="grid-cell"><div class="tile tile-1024">1024</div></div>
+            <div class="grid-cell"><div class="tile tile-2048">2048</div></div>
+            <div class="grid-cell"><div class="tile tile-4096">4096</div></div>
+            <div class="grid-cell"><div class="tile tile-8192">8192</div></div>
+            <div class="grid-cell"><div class="tile tile-16384">16.3k</div></div>
+            
             <!-- Row 3 -->
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
+            <div class="grid-cell"><div class="tile tile-32768">32.7k</div></div>
+            <div class="grid-cell"><div class="tile tile-65536">65.5k</div></div>
+            <div class="grid-cell"><div class="tile tile-131072">131k</div></div>
+            <div class="grid-cell"><div class="tile tile-262144">262k</div></div>
+            <div class="grid-cell"><div class="tile tile-524288">524k</div></div>
+            <div class="grid-cell"><div class="tile tile-1048576">1.0M</div></div>
+            <div class="grid-cell"><div class="tile tile-2097152">2.0M</div></div>
+
             <!-- Row 4 -->
+            <div class="grid-cell"><div class="tile tile-4194304">4.1M</div></div>
+            <div class="grid-cell"><div class="tile tile-8388608">8.3M</div></div>
+            <div class="grid-cell"><div class="tile tile-16777216">16.7M</div></div>
             <div class="grid-cell"></div>
             <div class="grid-cell"></div>
             <div class="grid-cell"></div>
             <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <!-- Row 5 -->
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <!-- Row 6 -->
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <!-- Row 7 -->
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
-            <div class="grid-cell"></div>
+
+            <!-- Rows 5-7 are empty background spaces ready for game action -->
+            <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+            <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+            <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
         </div>
     </div>
 
 </body>
+</html>
+
 </html>
